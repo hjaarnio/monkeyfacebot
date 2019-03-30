@@ -1,0 +1,10 @@
+version: '2'
+services:
+    bot:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: "bot"
+        env_file: .env
+        ports:
+            - 3310:3000
