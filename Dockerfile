@@ -1,7 +1,7 @@
 FROM python:3.6
 
 # Install dependencies
-RUN apt-get update
+RUN apt-get update && apt-get install -y cmake
 
 COPY requirements.txt /app/requirements.txt
 
