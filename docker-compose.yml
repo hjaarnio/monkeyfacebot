@@ -4,6 +4,9 @@ services:
         build:
             context: .
             dockerfile: Dockerfile
+        volumes:
+          - ./app:/app/app
+          - ./data:/app/data
         container_name: "bot"
         env_file: .env
         ports:
