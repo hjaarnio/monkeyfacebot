@@ -113,7 +113,7 @@ class AlignDlib:
         return list(map(lambda p: (p.x, p.y), points.parts()))
 
 
-finder = AlignDlib("shape_predictor_5_face_landmarks.dat")
+finder = AlignDlib("app/shape_predictor_5_face_landmarks.dat")
 
 
 def coords_from_pil_image(image):
@@ -123,7 +123,6 @@ def coords_from_pil_image(image):
 
 def landmarks_from_pil_image(image):
     coords = coords_from_pil_image(image)
-    print(coords)
     np_img = np.array(image)
     return [
         finder.findLandmarks(np_img, coord)
@@ -151,7 +150,6 @@ def swap_faces(img1, img2):
     # get landmark points from the images
     landmarks1 = landmarks_from_pil_image(img1)
     landmarks2 = landmarks_from_pil_image(img2)
-    print(landmarks1, landmarks2)
     img1_index = random.randint(0, len(landmarks1) - 1)
     img2_index = random.randint(0, len(landmarks2) - 1)
     landmarks1 = landmarks1[img1_index]
@@ -190,7 +188,6 @@ def swap_faces(img1, img2):
     #return img2
 
     # Match histograms on the selected areas
-    print(morphology.disk(int(height*0.1)))
     hist_mask = Image.fromarray(morphology.dilation(np.array(mask), morphology.disk(int(height*0.1))))
     img2_histogram = generate_histogram(img2, hist_mask)
     img1_histogram = generate_histogram(Image.fromarray(img1_transformed), hist_mask)

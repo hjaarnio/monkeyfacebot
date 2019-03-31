@@ -1,2 +1,4 @@
+from bot import main
 
-print('server')
+print('starting')
+main()

@@ -1,18 +1,18 @@
-import telegram as tg
 import logging
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from io import BytesIO
 import PIL.Image
 import os
+from get_monkey import get_monkey
+from face_finder import swap_faces
 
 
 TOKEN = os.environ.get('TOKEN')
+print('token', TOKEN)
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
 logger = logging.getLogger(__name__)
-
-
 
 
 def start(bot, update):
@@ -32,9 +32,10 @@ def image_process(bot, update):
         image = PIL.Image.open(BytesIO(file1))
 
         # Here should be done the changes to the PIL image created abow
+        result_image = swap_faces(image, get_monkey())
 
         bio.name = 'image.jpeg'
-        image.save(bio, 'JPEG')
+        result_image.save(bio, 'JPEG')
         bio.seek(0)
         bot.send_photo(update.message.chat_id, photo=bio)
     except Exception as e:
