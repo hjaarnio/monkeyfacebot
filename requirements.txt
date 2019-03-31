@@ -2,3 +2,4 @@ dlib==19.17.0
 numpy==1.16.2
 Pillow==5.4.1
 requests==2.21.0
+python-telegram-bot==11.1.0
