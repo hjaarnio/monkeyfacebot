@@ -123,6 +123,7 @@ def coords_from_pil_image(image):
 
 def landmarks_from_pil_image(image):
     coords = coords_from_pil_image(image)
+    print(coords)
     np_img = np.array(image)
     return [
         finder.findLandmarks(np_img, coord)
@@ -150,6 +151,7 @@ def swap_faces(img1, img2):
     # get landmark points from the images
     landmarks1 = landmarks_from_pil_image(img1)
     landmarks2 = landmarks_from_pil_image(img2)
+    print(landmarks1, landmarks2)
     img1_index = random.randint(0, len(landmarks1) - 1)
     img2_index = random.randint(0, len(landmarks2) - 1)
     landmarks1 = landmarks1[img1_index]
